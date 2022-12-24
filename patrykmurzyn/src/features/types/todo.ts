@@ -6,4 +6,5 @@ export interface Todo {
     title: string;
     isDone: boolean;
     priority: TodoPriority;
+    description: string;
 }

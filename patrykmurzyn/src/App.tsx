@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import './App.css';
 import {TodoList} from './features/components/TodoList';
 import {Todo} from './features/types/todo';
 import {TodoForm} from './features/components/TodoForm';
-import {nanoid} from 'nanoid';
 
 function App() {
 const [todos, setTodos] = useState<Todo[]>([]);
