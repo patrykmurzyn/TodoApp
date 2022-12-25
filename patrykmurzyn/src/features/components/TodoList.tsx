@@ -7,6 +7,8 @@ interface TodoListProps {
     todo: Todo;
     onDelete: (index: number) => void;
     onChangeStatus: (index: number) => void;
+    onSortPriority: () => void;
+    onSortStatus: () => void;
 }
 
 const priorityToColor: Record<TodoPriority, string> = {
@@ -47,19 +49,19 @@ const TodoListItem: FC<TodoListProps> = ({todo, todos, onDelete, onChangeStatus}
     </tr>
 }
 
-export const TodoList: FC<TodoListProps> = ({todos, onDelete, onChangeStatus}) => {
+export const TodoList: FC<TodoListProps> = ({todos, onDelete, onChangeStatus, onSortPriority, onSortStatus}) => {
     return (
         <table>
             <thead>
                 <tr>
-                    <th>Title</th>
+                    <th id='titleHeader'onClick={() => onSortPriority()}>Title</th>
                     <th>Description</th>
-                    <th>Status</th>
+                    <th id='statusHeader'onClick={() => onSortStatus()}>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {todos.map((t: Todo) => <TodoListItem key={t.id} todo = {t} todos={todos} onDelete={onDelete} onChangeStatus={onChangeStatus}></TodoListItem>)}
+                {todos.map((t: Todo) => <TodoListItem key={t.id} todo = {t} todos={todos} onDelete={onDelete} onChangeStatus={onChangeStatus} onSortPriority={onSortPriority} onSortStatus={onSortStatus}></TodoListItem>)}
             </tbody>
         </table>
     );
