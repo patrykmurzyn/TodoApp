@@ -76,6 +76,13 @@ table th:nth-child(4) {
     text-align: center;
     background-color: #14213d;
     color: #FFF;
+    cursor: pointer;
+}
+
+#priority option::selection,
+#priority option:hover {
+    background-color:#25365b;
+    ;
 }
 
 #button {
@@ -85,6 +92,7 @@ table th:nth-child(4) {
     background-color: #14213d;
     border:1px solid #FFF;
     color: #FFF;
+    cursor: pointer;
 }
 
 #button:hover {

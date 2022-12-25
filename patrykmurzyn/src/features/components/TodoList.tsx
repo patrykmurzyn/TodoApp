@@ -4,10 +4,9 @@ import '../../css/todoForm.css';
 
 interface TodoListProps {
     todos: Todo[];
-}
-
-interface TodoListItemProps {
     todo: Todo;
+    onDelete: (index: number) => void;
+    onChangeStatus: (index: number) => void;
 }
 
 const priorityToColor: Record<TodoPriority, string> = {
@@ -16,13 +15,16 @@ const priorityToColor: Record<TodoPriority, string> = {
     'high': '#F00'
 }
 
-const TodoListItem: FC<TodoListItemProps> = ({todo}) => {
+const TodoListItem: FC<TodoListProps> = ({todo, todos, onDelete, onChangeStatus}) => {
     const isDone = todo.isDone ? '✅' : '❌';
     const color = priorityToColor[todo.priority];
 
-    const handleDelete = (id: string) => {
-        
-        console.log(id)
+    const handleDelete = () => {
+        onDelete(todos.findIndex(t => t.id === todo.id));
+    }
+
+    const handleChangeStatus = () => {
+        onChangeStatus(todos.findIndex(t => t.id === todo.id));
     }
 
     return <tr key={todo.id}>
@@ -36,17 +38,16 @@ const TodoListItem: FC<TodoListItemProps> = ({todo}) => {
                 {todo.description}
             </p>
         </th>
-        <th>
+        <th onClick={() => handleChangeStatus()}>
             {isDone}
         </th>
-        <th onClick={() => handleDelete(todo.id)}>
+        <th onClick={() => handleDelete()}>
             🗑
         </th>
     </tr>
 }
 
-export const TodoList: FC<TodoListProps> = (props: TodoListProps) => {
-    const todos = props.todos;
+export const TodoList: FC<TodoListProps> = ({todos, onDelete, onChangeStatus}) => {
     return (
         <table>
             <thead>
@@ -58,7 +59,7 @@ export const TodoList: FC<TodoListProps> = (props: TodoListProps) => {
                 </tr>
             </thead>
             <tbody>
-                {todos.map((t: Todo) => <TodoListItem key={t.id} todo = {t}></TodoListItem>)}
+                {todos.map((t: Todo) => <TodoListItem key={t.id} todo = {t} todos={todos} onDelete={onDelete} onChangeStatus={onChangeStatus}></TodoListItem>)}
             </tbody>
         </table>
     );
