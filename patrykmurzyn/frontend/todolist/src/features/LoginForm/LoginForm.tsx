@@ -2,11 +2,15 @@ import React, {FC} from 'react';
 import { LoginFormType } from './LoginForm.type';
 import { useForm } from '@mantine/form';
 import { Box, Button, TextInput } from '@mantine/core';
+import { login } from './api';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginFormProps {}
 
 export const LoginForm: FC<LoginFormProps> = ({}) => {
     
+    const navigate = useNavigate();
+
     const form = useForm<LoginFormType>({
         initialValues: {
             email: '',
@@ -14,8 +18,13 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
         }
     })
 
-    const handleSubmit = (values: LoginFormType) => {
-        console.log(values);
+    const handleSubmit = async(values: LoginFormType) => {
+        try {
+            await login(values.email, values.password);
+            navigate('/todo');
+        } catch(error) {
+            console.error(error);
+        }
     }
 
     return (
