@@ -5,6 +5,7 @@ import {RootPage} from "./RootPage";
 import useIsLogged from "../hooks/useIsLogged";
 import { TodoListPage } from './TodoListPage';
 import { TodoFormPage } from './TodoFormPage';
+import { Logout } from '../features/Logout/Logout';
 
 interface RoutingProps {}
 
@@ -33,8 +34,12 @@ const privateRoutes = [
                 element: <TodoFormPage/>
             },
             {
+                path: '/todo/logout',
+                element: <Logout/>
+            },
+            {
                 path: '*',
-                element: <Navigate to="/todo" replace />,
+                element: <Navigate to='/todo' replace />,
             },
         ]
     }

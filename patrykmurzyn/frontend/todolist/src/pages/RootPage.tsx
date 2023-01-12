@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {Link, Outlet} from 'react-router-dom';
 import {AppShell, createStyles, Header, Navbar, Title,} from '@mantine/core';
+import { logout } from '../features/Logout/api';
 
 interface PageRootProps {}
 
@@ -35,23 +36,26 @@ export const RootPage: FC<PageRootProps> = ({}) => {
       <AppShell
           padding="md"
           navbar={
-            <Navbar width={{ base: 150 }} height={500} p="xs">
+            <Navbar width={{ base: 200 }} height={500} p="xs">
               <Link to="/todo" className={classes.link}>
-                List
+                Todos List
               </Link>
               <Link to={'/todo/new'} className={classes.link}>
-                Add
+                Add Todo
+              </Link>
+              <Link to={'/todo/logout'} className={classes.link}>
+                Logout
               </Link>
             </Navbar>
           }
           header={
             <Header height={60} p="xs">
-              <Title order={2}>Awesome Todo List</Title>
+              <Title order={2}>TodoApp</Title>
             </Header>
           }
           styles={(theme) => ({
             main: {
-              backgroundColor: theme.colors.gray[0],
+              backgroundColor: theme.colors.gray[2],
             },
           })}
       >

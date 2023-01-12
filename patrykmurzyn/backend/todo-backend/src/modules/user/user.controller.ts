@@ -40,6 +40,14 @@ export class UserController {
         });
     }
 
+    @Post('/logout')
+    @HttpCode(200)
+    async logoutUser(
+        @Res({passthrough: true}) response: Response) {
+            response.clearCookie('access-token');
+            response.clearCookie('auth');
+        }
+
 
     @Get()
     @UseGuards(UserGuard)
