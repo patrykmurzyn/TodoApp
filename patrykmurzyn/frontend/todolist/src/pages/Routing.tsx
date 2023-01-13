@@ -6,6 +6,7 @@ import useIsLogged from "../hooks/useIsLogged";
 import { TodoListPage } from './TodoListPage';
 import { TodoFormPage } from './TodoFormPage';
 import { Logout } from '../features/Logout/Logout';
+import { RegisterPage } from './RegisterPage';
 
 interface RoutingProps {}
 
@@ -13,6 +14,10 @@ const publicRoutes = [
     {
         path: '/login',
         element: <LoginPage/>
+    },
+    {
+        path: '/register',
+        element: <RegisterPage />
     },
     {
         path: '*',

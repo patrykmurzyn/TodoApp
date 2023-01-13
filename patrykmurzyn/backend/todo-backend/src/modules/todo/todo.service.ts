@@ -9,12 +9,13 @@ import { FilterTodoDto } from './dto/filter-todo';
 export class TodoService {
     constructor(private readonly prisma: PrismaService) {}
 
-    async getTodos(filter: FilterTodoDto): Promise<Todo[]> {
+    async getTodos(filter: FilterTodoDto, userId: number): Promise<Todo[]> {
         return this.prisma.todo.findMany({
             where: {
                 title: {
                     contains: filter.title,
-                }
+                },
+                userId: userId,
             }
         });
     }

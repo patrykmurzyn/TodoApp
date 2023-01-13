@@ -9,11 +9,13 @@ import { User } from '../user/user.decorator';
 export class TodoController {
     constructor(private readonly todoService: TodoService) {}
 
+    @UseGuards(UserGuard)
     @Get()
-    getTodos(@Query() filter: FilterTodoDto) {
-        return this.todoService.getTodos(filter);
+    getTodos(@User() userid: number, @Query() filter: FilterTodoDto) {
+        return this.todoService.getTodos(filter, userid);
     }
-
+    
+    @UseGuards(UserGuard)
     @Get(':id')
     getTodoById(@Param('id', ParseIntPipe) id:number) {
         return this.todoService.getTodoById(id);

@@ -1,13 +1,13 @@
 import React, {FC} from 'react';
-import { LoginFormType } from './LoginForm.type';
 import { useForm } from '@mantine/form';
 import { Box, Button, TextInput } from '@mantine/core';
-import { login } from './api';
 import { useNavigate } from 'react-router-dom';
+import { LoginFormType } from '../LoginForm/LoginForm.type';
+import { register } from './api';
 
-interface LoginFormProps {}
+interface RegisterFormProps {}
 
-export const LoginForm: FC<LoginFormProps> = ({}) => {
+export const RegisterForm: FC<RegisterFormProps> = ({}) => {
     
     const navigate = useNavigate();
 
@@ -20,15 +20,15 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
 
     const handleSubmit = async(values: LoginFormType) => {
         try {
-            await login(values.email, values.password);
-            navigate('/todo');
+            await register(values);
+            navigate('/login');
         } catch(error) {
             console.error(error);
         }
     }
 
-    const handleRegister = () => {
-        navigate('/register');
+    const handleGoBack = () => {
+        navigate('/login');
     }
 
     return (
@@ -36,8 +36,8 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
             <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
                 <TextInput label='Email' {...form.getInputProps('email')}></TextInput>
                 <TextInput type='password' label='Password' {...form.getInputProps('password')}></TextInput>
-                <Button type='submit'>Login</Button>
-                <Button onClick={handleRegister}>Register</Button>
+                <Button type='submit'>Register</Button>
+                <Button onClick={handleGoBack}>Go back</Button>
             </form>
         </Box>
     )
