@@ -26,7 +26,7 @@ Clone this repository:
 git clone https://github.com/patrykmurzyn/TodoApp
 ```
 
-# Setup Backend
+### Setup Backend
 
 ```
 cd patrykmurzyn/backend/todo-backend
@@ -47,7 +47,7 @@ Run the backend with:
 sudo npm run start:dev
 ```
 
-# Setup Frontend:
+### Setup Frontend:
 
 Open new terminal window and type: 
 
