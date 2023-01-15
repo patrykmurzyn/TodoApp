@@ -18,13 +18,8 @@ export const TodoForm: FC<TodoFormProps> = ({}) => {
     });
 
     const handleSubmit = (values: TodoFormType) => {
-//        const showNotification = 'ShowNotification';
-
         createTodo(values).then(() => navigate('/todo') ).catch((error) => {
             console.error(error)
-
-//           createTodo(values).then(() => navigate('/todo', {state: {showNotification}}) ).catch((error) => {
-//              console.error(error)
         })
     }
 
