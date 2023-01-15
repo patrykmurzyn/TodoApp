@@ -12,9 +12,9 @@ This is a simple Todo List App created with React, NestJS, SQLite, Prisma.
 - Logout user
 
 ![](./img/0.png)
-![](./img/3.png)
-![](./img/2.png)
-![](./img/1.png)
+<img src="./img/3.png" height="300">
+<img src="./img/2.png" height="300">
+<img src="./img/1.png" height="300">
 
 ## How to use
 
@@ -23,13 +23,14 @@ This project is divided into two sections - backend (NestJS) and frontend (React
 Clone this repository: 
 
 ```
-git clone https://github.com/patrykmurzyn/
+git clone https://github.com/patrykmurzyn/TodoApp
 ```
 
 # Setup Backend
 
 ```
 cd patrykmurzyn/backend/todo-backend
+sudo npm install @nestjs/config
 touch .env
 ```
 
@@ -54,3 +55,5 @@ Open new terminal window and type:
 cd patrykmurzyn/frontend/todolist
 sudo npm start
 ```
+
+Now you can use application on http://localhost:3000/login
