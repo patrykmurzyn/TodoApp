@@ -12,7 +12,7 @@ This is a simple Todo List App created with React, NestJS, SQLite, Prisma.
 - Logout user
 
 ![](./img/0.png)
-<img src="./img/3.png" height="300">
+<img src="./img/3.png" height="200">
 <img src="./img/2.png" height="300">
 <img src="./img/1.png" height="300">
 
