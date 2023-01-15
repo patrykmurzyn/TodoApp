@@ -10,7 +10,9 @@ export const register = async (form: LoginFormType) => {
         headers: {
             'Content-Type': 'application/json'
         },
-    });
-    if(response.status !== 201) throw new Error('Register Failed');
-    return await response.text();
+    }).then(response=>response.json());
+    
+    if(response.statusCode !== 201) {
+        throw new Error(`${response.message}.`);
+    }
 }

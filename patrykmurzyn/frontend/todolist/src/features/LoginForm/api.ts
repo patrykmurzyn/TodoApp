@@ -6,6 +6,6 @@ export const login = async (username: string, password: string) => {
         },
         credentials: 'include'
     });
-    if(response.status !== 200) throw new Error('Login failed');
+    if(response.status !== 200) throw new Error('Wrong username or password.');
     return await response.text();
 }

@@ -5,6 +5,7 @@ import { Box, Button, TextInput, Notification } from '@mantine/core';
 import { login } from './api';
 import { useNavigate } from 'react-router-dom';
 import WrongIcon from '../../icons/wrong.svg';
+import '../../css/style.css'
 
 
 interface LoginFormProps {}
@@ -13,6 +14,8 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
     
     const navigate = useNavigate();
     const [wrongNotification, setWrongNotification] = useState(false);
+    const [errorDescription, seterrorDescription] = useState('');
+
 
 
     const form = useForm<LoginFormType>({
@@ -25,9 +28,9 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
     const handleSubmit = async(values: LoginFormType) => {
         try {
             await login(values.email, values.password);
-            navigate('/todo');
+            navigate('/todo', {state: values});
         } catch(error) {
-            console.error(error);
+            if(error) seterrorDescription(error.toString());
             setWrongNotification(true);
         }
     }
@@ -43,14 +46,18 @@ export const LoginForm: FC<LoginFormProps> = ({}) => {
     return (
         <Box sx={{maxWidth: 300}} mx='auto'> 
             <form onSubmit={form.onSubmit(values => handleSubmit(values))}>
-                <TextInput label='Email' {...form.getInputProps('email')}></TextInput>
-                <TextInput type='password' label='Password' {...form.getInputProps('password')}></TextInput>
-                <Button type='submit'>Login</Button>
-                <Button onClick={handleRegister}>Register</Button>
+                <TextInput required type='email' label='Email:' {...form.getInputProps('email')}></TextInput>
+                <TextInput required type='password' label='Password:' {...form.getInputProps('password')}></TextInput>
+                <br />
+                <Button.Group orientation="vertical">
+                    <Button variant="outline" color="yellow" size="md" uppercase type='submit'>Login</Button>
+                    <Button className='register-button' variant="outline" color="yellow" size="md" uppercase onClick={handleRegister}>Register</Button>
+                </Button.Group>
             </form>
+            <br />
             {wrongNotification && (
-          <Notification className='notification' icon={<img src={WrongIcon} width="22" height="22" />} color="red" title="Notification" onClose={handleCloseWrongNotification}>
-              Login failed
+          <Notification className='notification' icon={<img src={WrongIcon} width="22" height="22" />} color="red" title="Login failed" onClose={handleCloseWrongNotification}>
+              {errorDescription}
           </Notification>
         )}
         </Box>

@@ -36,7 +36,7 @@ export const RootPage: FC<PageRootProps> = ({}) => {
       <AppShell
           padding="md"
           navbar={
-            <Navbar width={{ base: 200 }} height={500} p="xs">
+            <Navbar width={{ base: 200 }} p="xs">
               <Link to="/todo" className={classes.link}>
                 Todos List
               </Link>
@@ -50,14 +50,9 @@ export const RootPage: FC<PageRootProps> = ({}) => {
           }
           header={
             <Header height={60} p="xs">
-              <Title order={2}>TodoApp</Title>
+              <Title order={2}>TodoApp Project</Title>
             </Header>
           }
-          styles={(theme) => ({
-            main: {
-              backgroundColor: theme.colors.gray[2],
-            },
-          })}
       >
         <Outlet />
       </AppShell>

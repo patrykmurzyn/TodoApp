@@ -13,7 +13,7 @@ export class UserController {
     @Post('/register')
     async createUser(@Body() body: RegisterUserDto) {
         const user = await this.userService.registerUser(body);
-        return this.userService.createToken(user);
+        return JSON.parse('{"statusCode": 201,"message": "Created","error": "OK"}');
     }
 
     @Post('/login')

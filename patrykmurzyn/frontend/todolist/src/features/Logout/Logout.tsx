@@ -13,16 +13,18 @@ export const Logout: FC<LogoutProps> = ({}) => {
     const handleSubmit = async() => {
         try {
             await logout();
-            navigate('/login');
         } catch(error) {
             console.error(error);
         }
+        navigate('/login');
+
     }
 
     return (
         <Box sx={{maxWidth: 300}} mx='auto'> 
         <form onSubmit={handleSubmit}>
-            <Button type='submit'>Logout</Button>
+            <h2>Are you sure? </h2>
+            <Button variant="outline" color="yellow" size="md" uppercase type='submit'>Yes, Logout</Button>
         </form>
             
         </Box>
