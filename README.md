@@ -18,8 +18,6 @@ This is a simple Todo List App created with React, NestJS, SQLite, Prisma.
 
 ## How to use
 
-This project is divided into two sections - backend (NestJS) and frontend (React).
-
 Clone this repository: 
 
 ```
@@ -41,7 +39,7 @@ DATABASE_URL="file:./dev.db"
 JWT_KEY="Your secret KEY"
 ```
 
-Run the backend with:
+Change JWT_KEY value and run the backend with:
 
 ```
 sudo npm run start:dev
@@ -53,6 +51,7 @@ Open new terminal window and type:
 
 ```
 cd patrykmurzyn/frontend/todolist
+sudo npm install
 sudo npm start
 ```
 
